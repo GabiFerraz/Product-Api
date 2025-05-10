@@ -52,6 +52,10 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
@@ -117,11 +121,11 @@
 				<version>0.8.10</version>
 				<configuration>
 					<excludes>
-						<exclude>**/com/api/client/core/dto/**</exclude>
-						<exclude>**/com/api/client/entrypoint/config/**</exclude>
-						<exclude>**/com/api/client/presenter/**</exclude>
-						<exclude>**/com/api/client/ClientApplication**</exclude>
-						<exclude>**/com/api/client/core/domain/exception/ErrorDetail**</exclude>
+						<exclude>**/com/api/product/core/dto/**</exclude>
+						<exclude>**/com/api/product/entrypoint/config/**</exclude>
+						<exclude>**/com/api/product/presenter/**</exclude>
+						<exclude>**/com/api/product/ProductApplication**</exclude>
+						<exclude>**/com/api/product/core/domain/exception/ErrorDetail**</exclude>
 					</excludes>
 				</configuration>
 				<executions>
