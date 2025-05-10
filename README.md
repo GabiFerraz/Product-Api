@@ -1,4 +1,4 @@
-# Client API
+# Product API
 Essa api é parte do projeto da **Fase 4** da Especialização em Arquitetura e Desenvolvimento Java da FIAP.
 Um sistema de gerenciamento de pedidos integrado com Spring e Mocrosserviços. A aplicação foi desenvolvida em **Java 21**,
 utilizando **Spring Boot**, **Maven**, um banco de dados **H2** para testes, **Mockito** e **JUnit 5** para testes
@@ -6,12 +6,12 @@ unitários, **Lombok** para facilitar o desenvolvimento e documentação gerada 
 
 ## Descrição do Projeto
 O objetivo desse sistema é abranger desde a gestão de clientes e produtos até o processamento e entrega de pedidos,
-enfatizando a autonomia dos serviços, comunicação eficas e persistência de dados isolada. Esta API é responsável pela
-gestão de clientes.
+enfatizando a autonomia dos serviços, comunicação eficaz e persistência de dados isolada. Esta API é responsável pela
+gestão de produtos.
 
 ## Funcionalidades
 A API permite:
-- **Cadastrar, buscar, atualizar e deletar** clientes e seus respectivos dados.
+- **Cadastrar, buscar, atualizar e deletar** produtos e seus respectivos dados.
 
 ## Tecnologias Utilizadas
 - **Java 21**
@@ -51,7 +51,7 @@ O projeto segue uma arquitetura modularizada, organizada nas seguintes camadas:
 ## Configuração e Execução
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/GabiFerraz/Client-Api.git
+   git clone https://github.com/GabiFerraz/Product-Api.git
    ```
 2. **Instale as dependências:**
    ```bash
@@ -67,8 +67,8 @@ Para visualização dos dados da api no banco de dados H2, rodar o comando: **mv
 e acessar localmente o banco através do endpoint:
 - **Banco H2**: http://localhost:8080/h2-console
 - **Driver Class**: org.h2.Driver
-- **JDBC URL**: jdbc:h2:mem:ParkingMeter
-- **User Name**: gb
+- **JDBC URL**: jdbc:h2:mem:product
+- **User Name**: gm
 - **Password**:
   Para visualização dos dados da api no banco de dados Mysql, subir o docker-compose: **docker-compose up --build**
 
@@ -77,39 +77,36 @@ Os endpoints estão documentados via **Swagger**:
 - **Swagger JSON**: http://localhost:8080/v3/api-docs
 
 ### Possibilidades de Chamadas da API
-1. **Cadastro de Cliente:**
+1. **Cadastro de Produto:**
 ```json
-curl --location 'localhost:8080/api/client' \
+curl --location 'localhost:8080/api/product' \
 --header 'Content-Type: application/json' \
---data-raw '{
-"name": "Gabis",
-"cpf": "12345678000",
-"phoneNumber": "+5584998765432",
-"address": "Rua das Flores, 123",
-"email": "gabis@test.com"
+--data '{
+"name": "Bola de Futebol",
+"sku": "BOLA-123-ABC",
+"price": 10.0
 }'
 ```
 
-2. **Busca de Cliente:**
+2. **Busca de Produto:**
 ```json
-curl --location 'localhost:8080/api/client/12345678000'
+curl --location 'localhost:8080/api/product/BOLA-123-ABC'
 ```
 
-3. **Atualização de Cliente:**
+3. **Atualização de Produto:**
 ```json
-curl --location --request PUT 'localhost:8080/client/user/12345678000' \
+curl --location --request PUT 'localhost:8080/api/product/BOLA-123-ABC' \
 --header 'Content-Type: application/json' \
---data-raw '{
-"name": "Gabis",
-"phoneNumber": "+5584998765499",
-"address": "Rua das Flores, 123",
-"email": "gabis@gmail.com"
+--data '{
+"name": "Bola de Futebol 2",
+"sku": "BOLA-123-ABC",
+"price": 20.0
 }'
 ```
 
-4. **Delete de Cliente:**
+4. **Delete de Produto:**
 ```json
-curl --location --request DELETE 'localhost:8080/client/user/12345678000'
+curl --location --request DELETE 'localhost:8080/api/product/BOLA-123-ABC'
 ```
 
 
