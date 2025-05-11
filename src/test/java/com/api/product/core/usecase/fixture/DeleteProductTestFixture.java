@@ -1,6 +1,7 @@
 package com.api.product.core.usecase.fixture;
 
 import com.api.product.core.domain.Product;
+import com.api.product.core.gateway.response.StockDetailsResponse;
 
 public class DeleteProductTestFixture {
 
@@ -11,5 +12,9 @@ public class DeleteProductTestFixture {
 
   public static Product validResponse() {
     return new Product(ID, NAME, SKU, PRICE);
+  }
+
+  public static StockDetailsResponse validStockResponse(final int quantity) {
+    return new StockDetailsResponse(SKU, quantity);
   }
 }

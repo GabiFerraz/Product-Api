@@ -69,7 +69,13 @@ public class ArchitectureTest {
 
   @ArchTest
   private static final ArchRule GATEWAY_MUST_BE_INTERFACE =
-      classes().that().resideInAPackage("..core.gateway..").should().beInterfaces();
+      classes()
+          .that()
+          .resideInAPackage("..core.gateway..")
+          .and()
+          .resideOutsideOfPackage("..core.gateway.response..")
+          .should()
+          .beInterfaces();
 
   @ArchTest
   private static final ArchRule GATEWAY_SHOULD_NOT_DEPEND_ON_EXTERNAL_PACKAGES =
@@ -90,7 +96,7 @@ public class ArchitectureTest {
           .areAnnotatedWith(RestController.class)
           .should()
           .resideInAPackage("..entrypoint.controller..")
-          .as("Controllers should reside in a package 'com.api.lareserva.entrypoint.controller'.")
+          .as("Controllers should reside in a package 'com.api.product.entrypoint.controller'.")
           .allowEmptyShould(true);
 
   @ArchTest
@@ -124,7 +130,7 @@ public class ArchitectureTest {
                           final var responseClassIsNotFromPackagePresenter =
                               !responseClass
                                   .getPackageName()
-                                  .equals("com.api.lareserva.presenter.response");
+                                  .equals("com.api.product.presenter.response");
                           if (responseClassIsNotFromPackagePresenter) {
                             events.add(
                                 SimpleConditionEvent.violated(
