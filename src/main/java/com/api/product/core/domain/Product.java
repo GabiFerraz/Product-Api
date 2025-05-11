@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Product {
 
-  private static final String DOMAIN_MESSAGE_ERROR = "by domain client";
+  private static final String DOMAIN_MESSAGE_ERROR = "by domain product";
   private static final String BLANK_MESSAGE_ERROR = "Field=[%s] should not be empty or null";
   private static final String PATTERN_ERROR_MESSAGE =
       "The field=[%s] is null or has an invalid pattern";

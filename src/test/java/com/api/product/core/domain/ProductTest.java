@@ -26,7 +26,7 @@ class ProductTest {
   void shouldNotCreateProductWithInvalidName(final String name) {
     assertThatThrownBy(() -> Product.createProduct(name, "BOLA-123-ABC", 10.0))
         .isInstanceOf(DomainException.class)
-        .hasMessage("Field=[name] should not be empty or null by domain client");
+        .hasMessage("Field=[name] should not be empty or null by domain product");
   }
 
   @ParameterizedTest
@@ -35,7 +35,7 @@ class ProductTest {
   void shouldNotCreateProductWithInvalidSku(final String sku) {
     assertThatThrownBy(() -> Product.createProduct("Bola de Futebol", sku, 10.0))
         .isInstanceOf(DomainException.class)
-        .hasMessage("The field=[sku] is null or has an invalid pattern by domain client");
+        .hasMessage("The field=[sku] is null or has an invalid pattern by domain product");
   }
 
   @ParameterizedTest
@@ -45,6 +45,6 @@ class ProductTest {
     assertThatThrownBy(() -> Product.createProduct("Bola de Futebol", "BOLA-123-ABC", price))
         .isInstanceOf(DomainException.class)
         .hasMessageContaining("Field=[price]")
-        .hasMessageContaining("by domain client");
+        .hasMessageContaining("by domain product");
   }
 }
