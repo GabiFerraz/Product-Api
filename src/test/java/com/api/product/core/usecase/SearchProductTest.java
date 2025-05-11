@@ -22,6 +22,7 @@ class SearchProductTest {
 
     final var response = searchProduct.execute(sku);
 
+    assertThat(response).isPresent();
     assertThat(response.get()).usingRecursiveComparison().isEqualTo(product);
 
     verify(productGateway).findBySku(sku);
