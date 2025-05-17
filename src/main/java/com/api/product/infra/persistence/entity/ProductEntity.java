@@ -3,6 +3,8 @@ package com.api.product.infra.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "products")
 @Getter
@@ -23,5 +25,5 @@ public class ProductEntity {
   private String sku;
 
   @Column(name = "price", nullable = false)
-  private Double price;
+  private BigDecimal price;
 }

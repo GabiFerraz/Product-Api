@@ -4,6 +4,8 @@ import static java.lang.String.format;
 
 import com.api.product.core.domain.exception.DomainException;
 import com.api.product.core.domain.valueobject.ValidationDomain;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,11 +26,11 @@ public class Product {
   private String id;
   private String name;
   private String sku;
-  private Double price;
+  private BigDecimal price;
 
   public Product() {}
 
-  public Product(final String id, final String name, final String sku, final Double price) {
+  public Product(final String id, final String name, final String sku, final BigDecimal price) {
 
     validateDomain(name, sku, price);
 
@@ -38,7 +40,7 @@ public class Product {
     this.price = price;
   }
 
-  public static Product createProduct(final String name, final String sku, final Double price) {
+  public static Product createProduct(final String name, final String sku, final BigDecimal price) {
 
     validateDomain(name, sku, price);
 
@@ -57,7 +59,7 @@ public class Product {
     return sku;
   }
 
-  public Double getPrice() {
+  public BigDecimal getPrice() {
     return price;
   }
 
@@ -65,11 +67,11 @@ public class Product {
     this.name = name;
   }
 
-  public void setPrice(final Double price) {
+  public void setPrice(final BigDecimal price) {
     this.price = price;
   }
 
-  private static void validateDomain(final String name, final String sku, final Double price) {
+  private static void validateDomain(final String name, final String sku, final BigDecimal price) {
     final List<ValidationDomain<?>> rules =
         List.of(
             new ValidationDomain<>(
@@ -79,7 +81,7 @@ public class Product {
             new ValidationDomain<>(sku, format(PATTERN_ERROR_MESSAGE, "sku"), List.of(PATTERN_SKU)),
             new ValidationDomain<>(
                 price, format(BLANK_MESSAGE_ERROR, "price"), List.of(Objects::isNull)),
-            new ValidationDomain<>(price, NEGATIVE_PRICE_ERROR, List.of(p -> p != null && p < 0)));
+            new ValidationDomain<>(price, NEGATIVE_PRICE_ERROR, List.of(p -> p != null && p.compareTo(BigDecimal.ZERO) < 0)));
 
     final var errors = validate(rules);
 

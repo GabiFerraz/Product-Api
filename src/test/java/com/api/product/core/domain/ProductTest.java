@@ -9,11 +9,13 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.math.BigDecimal;
+
 class ProductTest {
 
   @Test
   void shouldCreateProductSuccessfully() {
-    final var product = Product.createProduct("Bola de Futebol", "BOLA-123-ABC", 10.0);
+    final var product = Product.createProduct("Bola de Futebol", "BOLA-123-ABC", BigDecimal.valueOf(10.0));
 
     assert product.getName().equals("Bola de Futebol");
     assert product.getSku().equals("BOLA-123-ABC");
@@ -24,7 +26,7 @@ class ProductTest {
   @NullAndEmptySource
   @ValueSource(strings = {" "})
   void shouldNotCreateProductWithInvalidName(final String name) {
-    assertThatThrownBy(() -> Product.createProduct(name, "BOLA-123-ABC", 10.0))
+    assertThatThrownBy(() -> Product.createProduct(name, "BOLA-123-ABC", BigDecimal.valueOf(10.0)))
         .isInstanceOf(DomainException.class)
         .hasMessage("Field=[name] should not be empty or null by domain product");
   }
@@ -33,15 +35,14 @@ class ProductTest {
   @NullAndEmptySource
   @ValueSource(strings = {"A1B2", "ABCDEFGHIJKLMNOPQRSTU", "abcdefg", "AB_CD56", "AB@CD5"})
   void shouldNotCreateProductWithInvalidSku(final String sku) {
-    assertThatThrownBy(() -> Product.createProduct("Bola de Futebol", sku, 10.0))
+    assertThatThrownBy(() -> Product.createProduct("Bola de Futebol", sku, BigDecimal.valueOf(10.0)))
         .isInstanceOf(DomainException.class)
         .hasMessage("The field=[sku] is null or has an invalid pattern by domain product");
   }
 
   @ParameterizedTest
   @NullSource
-  @ValueSource(doubles = {-0.01, -1.0, -100.0})
-  void shouldNotCreateProductWithInvalidPrice(final Double price) {
+  void shouldNotCreateProductWithInvalidPrice(final BigDecimal price) {
     assertThatThrownBy(() -> Product.createProduct("Bola de Futebol", "BOLA-123-ABC", price))
         .isInstanceOf(DomainException.class)
         .hasMessageContaining("Field=[price]")

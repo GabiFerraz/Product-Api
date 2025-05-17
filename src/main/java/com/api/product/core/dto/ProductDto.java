@@ -1,3 +1,5 @@
 package com.api.product.core.dto;
 
-public record ProductDto(String name, String sku, Double price) {}
+import java.math.BigDecimal;
+
+public record ProductDto(String name, String sku, BigDecimal price) {}

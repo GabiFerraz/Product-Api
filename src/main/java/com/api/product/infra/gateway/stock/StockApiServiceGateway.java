@@ -14,7 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class StockApiServiceGateway implements StockApiGateway {
 
-  @Value("${app.product-api.base-url}")
+  @Value("${app.stock-api.base-url}")
   private String stockApiBaseUrl;
 
   private final WebClient.Builder webClientBuilder;

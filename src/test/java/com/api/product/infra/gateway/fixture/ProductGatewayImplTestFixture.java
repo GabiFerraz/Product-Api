@@ -3,14 +3,16 @@ package com.api.product.infra.gateway.fixture;
 import com.api.product.core.domain.Product;
 import com.api.product.infra.persistence.entity.ProductEntity;
 
+import java.math.BigDecimal;
+
 public class ProductGatewayImplTestFixture {
 
   private static final String ID = "1";
   private static final String NAME = "Bola de Futebol";
   private static final String SKU = "BOLA-123-ABC";
-  private static final Double PRICE = 10.0;
+  private static final BigDecimal PRICE = BigDecimal.valueOf(10.0);
   private static final String NEW_NAME = "Bola de Futebol 2";
-  private static final Double NEW_PRICE = 20.0;
+  private static final BigDecimal NEW_PRICE = BigDecimal.valueOf(20.0);
 
   public static ProductEntity productEntity() {
     return ProductEntity.builder().name(NAME).sku(SKU).price(PRICE).build();
