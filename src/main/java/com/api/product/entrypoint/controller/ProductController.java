@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 public class ProductController {
 
   private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product with sku=[%s] not found.";

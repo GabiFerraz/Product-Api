@@ -79,7 +79,7 @@ Os endpoints estão documentados via **Swagger**:
 ### Possibilidades de Chamadas da API
 1. **Cadastro de Produto:**
 ```json
-curl --location 'localhost:8080/api/product' \
+curl --location 'localhost:8080/api/products' \
 --header 'Content-Type: application/json' \
 --data '{
 "name": "Bola de Futebol",
@@ -90,12 +90,12 @@ curl --location 'localhost:8080/api/product' \
 
 2. **Busca de Produto:**
 ```json
-curl --location 'localhost:8080/api/product/BOLA-123-ABC'
+curl --location 'localhost:8080/api/products/BOLA-123-ABC'
 ```
 
 3. **Atualização de Produto:**
 ```json
-curl --location --request PUT 'localhost:8080/api/product/BOLA-123-ABC' \
+curl --location --request PUT 'localhost:8080/api/products/BOLA-123-ABC' \
 --header 'Content-Type: application/json' \
 --data '{
 "name": "Bola de Futebol 2",
@@ -106,7 +106,7 @@ curl --location --request PUT 'localhost:8080/api/product/BOLA-123-ABC' \
 
 4. **Delete de Produto:**
 ```json
-curl --location --request DELETE 'localhost:8080/api/product/BOLA-123-ABC'
+curl --location --request DELETE 'localhost:8080/api/products/BOLA-123-ABC'
 ```
 
 
