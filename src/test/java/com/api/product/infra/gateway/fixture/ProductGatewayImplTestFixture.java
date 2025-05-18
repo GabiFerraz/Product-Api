@@ -2,7 +2,6 @@ package com.api.product.infra.gateway.fixture;
 
 import com.api.product.core.domain.Product;
 import com.api.product.infra.persistence.entity.ProductEntity;
-
 import java.math.BigDecimal;
 
 public class ProductGatewayImplTestFixture {

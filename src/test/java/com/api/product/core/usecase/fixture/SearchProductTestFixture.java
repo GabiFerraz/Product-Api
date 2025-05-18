@@ -1,7 +1,6 @@
 package com.api.product.core.usecase.fixture;
 
 import com.api.product.core.domain.Product;
-
 import java.math.BigDecimal;
 
 public class SearchProductTestFixture {

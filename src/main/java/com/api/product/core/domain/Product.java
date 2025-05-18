@@ -4,7 +4,6 @@ import static java.lang.String.format;
 
 import com.api.product.core.domain.exception.DomainException;
 import com.api.product.core.domain.valueobject.ValidationDomain;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +80,10 @@ public class Product {
             new ValidationDomain<>(sku, format(PATTERN_ERROR_MESSAGE, "sku"), List.of(PATTERN_SKU)),
             new ValidationDomain<>(
                 price, format(BLANK_MESSAGE_ERROR, "price"), List.of(Objects::isNull)),
-            new ValidationDomain<>(price, NEGATIVE_PRICE_ERROR, List.of(p -> p != null && p.compareTo(BigDecimal.ZERO) < 0)));
+            new ValidationDomain<>(
+                price,
+                NEGATIVE_PRICE_ERROR,
+                List.of(p -> p != null && p.compareTo(BigDecimal.ZERO) < 0)));
 
     final var errors = validate(rules);
 

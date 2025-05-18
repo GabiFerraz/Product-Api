@@ -3,7 +3,6 @@ package com.api.product.entrypoint.fixture;
 import com.api.product.core.domain.Product;
 import com.api.product.core.dto.ProductDto;
 import com.api.product.core.dto.UpdateProductDto;
-
 import java.math.BigDecimal;
 
 public class ProductControllerTestFixture {

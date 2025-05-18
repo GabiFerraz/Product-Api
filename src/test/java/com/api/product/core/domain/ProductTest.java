@@ -3,23 +3,23 @@ package com.api.product.core.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.api.product.core.domain.exception.DomainException;
+import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.math.BigDecimal;
-
 class ProductTest {
 
   @Test
   void shouldCreateProductSuccessfully() {
-    final var product = Product.createProduct("Bola de Futebol", "BOLA-123-ABC", BigDecimal.valueOf(10.0));
+    final var product =
+        Product.createProduct("Bola de Futebol", "BOLA-123-ABC", BigDecimal.valueOf(10.0));
 
     assert product.getName().equals("Bola de Futebol");
     assert product.getSku().equals("BOLA-123-ABC");
-    assert product.getPrice().equals(10.0);
+    assert product.getPrice().equals(BigDecimal.valueOf(10.0));
   }
 
   @ParameterizedTest
@@ -35,7 +35,8 @@ class ProductTest {
   @NullAndEmptySource
   @ValueSource(strings = {"A1B2", "ABCDEFGHIJKLMNOPQRSTU", "abcdefg", "AB_CD56", "AB@CD5"})
   void shouldNotCreateProductWithInvalidSku(final String sku) {
-    assertThatThrownBy(() -> Product.createProduct("Bola de Futebol", sku, BigDecimal.valueOf(10.0)))
+    assertThatThrownBy(
+            () -> Product.createProduct("Bola de Futebol", sku, BigDecimal.valueOf(10.0)))
         .isInstanceOf(DomainException.class)
         .hasMessage("The field=[sku] is null or has an invalid pattern by domain product");
   }
